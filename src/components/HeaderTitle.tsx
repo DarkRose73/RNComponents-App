@@ -4,12 +4,13 @@ import {styles} from '../theme/AppTheme';
 
 interface Props {
   title: string;
+  marginBottom?: number;
 }
 
-export const HeaderTitle = ({title}: Props) => {
+export const HeaderTitle = ({title, marginBottom = 20}: Props) => {
   const {top} = useSafeAreaInsets();
   return (
-    <View style={{marginTop: top + 20, marginBottom: 20}}>
+    <View style={{marginTop: top + 20, marginBottom: marginBottom}}>
       <Text style={{...styles.title, color: '#5856D6'}}>{title}</Text>
     </View>
   );
