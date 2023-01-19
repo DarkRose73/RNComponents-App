@@ -22,7 +22,7 @@ export const menuItems: MenuItem[] = [
     component: 'AlertScreen',
   },
   {
-    name: 'Text Inputs',
+    name: 'Text inputs',
     icon: 'document-text-outline',
     component: 'TextInputScreen',
   },
@@ -40,5 +40,10 @@ export const menuItems: MenuItem[] = [
     name: 'Modal',
     icon: 'copy-outline',
     component: 'ModalScreen',
+  },
+  {
+    name: 'Infinite scroll',
+    icon: 'download-outline',
+    component: 'InfiniteScrollScreen',
   },
 ];
