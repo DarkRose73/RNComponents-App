@@ -9,13 +9,18 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {HeaderTitle} from '../components/HeaderTitle';
 import {styles} from '../theme/AppTheme';
 import {useForm} from '../hooks/useForm';
 import CustomSwitch from '../components/CustomSwitch';
+import {ThemeContext} from '../context/themeContext/ThemeContext';
 
 export const TextInputScreen = () => {
+  const {
+    theme: {colors, dividerColor},
+  } = useContext(ThemeContext);
+
   const {isSubscribed, form, onChange} = useForm({
     name: '',
     email: '',
@@ -32,7 +37,12 @@ export const TextInputScreen = () => {
             <HeaderTitle title="Text Inputs" />
 
             <TextInput
-              style={stylesScreen.inputStyle}
+              style={{
+                ...stylesScreen.inputStyle,
+                borderColor: colors.text,
+                color: colors.text,
+              }}
+              placeholderTextColor={dividerColor}
               placeholder="Name"
               autoCorrect={false}
               autoCapitalize="words"
@@ -40,7 +50,12 @@ export const TextInputScreen = () => {
             />
 
             <TextInput
-              style={stylesScreen.inputStyle}
+              style={{
+                ...stylesScreen.inputStyle,
+                borderColor: colors.text,
+                color: colors.text,
+              }}
+              placeholderTextColor={dividerColor}
               placeholder="E-mail"
               autoCorrect={false}
               autoCapitalize="none"
@@ -49,7 +64,12 @@ export const TextInputScreen = () => {
             />
 
             <TextInput
-              style={stylesScreen.inputStyle}
+              style={{
+                ...stylesScreen.inputStyle,
+                borderColor: colors.text,
+                color: colors.text,
+              }}
+              placeholderTextColor={dividerColor}
               placeholder="Phone"
               onChangeText={value => onChange(value, 'phone')}
               keyboardType="phone-pad"
@@ -57,7 +77,9 @@ export const TextInputScreen = () => {
 
             {/* Ejemplo */}
             <View style={stylesScreen.switchRow}>
-              <Text style={stylesScreen.switchText}>Subscribe</Text>
+              <Text style={{...stylesScreen.switchText, color: colors.text}}>
+                Subscribe
+              </Text>
               <CustomSwitch
                 isOn={isSubscribed}
                 onChange={value => onChange(value, 'isSubscribed')}
@@ -77,7 +99,6 @@ export const TextInputScreen = () => {
 const stylesScreen = StyleSheet.create({
   inputStyle: {
     borderWidth: 1,
-    borderColor: 'rgba(0,0,0,0.3)',
     height: 50,
     paddingHorizontal: 10,
     borderRadius: 10,

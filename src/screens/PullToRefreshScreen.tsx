@@ -1,17 +1,20 @@
 import {View, Text, ScrollView, RefreshControl} from 'react-native';
-import React from 'react';
+import React, {useContext} from 'react';
 import {HeaderTitle} from '../components/HeaderTitle';
 import {styles} from '../theme/AppTheme';
 import {useState} from 'react';
+import {ThemeContext} from '../context/themeContext/ThemeContext';
 
 export const PullToRefreshScreen = () => {
   const [refreshing, setRefreshing] = useState(false);
   const [data, setData] = useState<string>();
+  const {
+    theme: {colors, dark},
+  } = useContext(ThemeContext);
 
   const onRefresh = () => {
     setRefreshing(true);
     setTimeout(() => {
-      console.log('End');
       setRefreshing(false);
       setData('Hello world');
     }, 3000);
@@ -25,14 +28,14 @@ export const PullToRefreshScreen = () => {
           onRefresh={onRefresh}
           progressViewOffset={10}
           // Color del circular progress indicator
-          progressBackgroundColor="#5856D6"
+          progressBackgroundColor={colors.text}
           // Ciclo de colores del circular progress indicator
-          colors={['white', 'red', 'orange']}
+          colors={[colors.background]}
           // SOLO IOS
           style={{backgroundColor: 'blue'}}
-          tintColor="white"
+          tintColor={dark ? 'white' : 'black'}
           title="Refreshing"
-          titleColor="white"
+          titleColor={dark ? 'white' : 'black'}
         />
       }>
       <View style={styles.globalMargin}>

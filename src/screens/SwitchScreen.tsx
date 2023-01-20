@@ -1,7 +1,8 @@
 import {StyleSheet, Text, View} from 'react-native';
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {HeaderTitle} from '../components/HeaderTitle';
 import CustomSwitch from '../components/CustomSwitch';
+import {ThemeContext} from '../context/themeContext/ThemeContext';
 
 export const SwitchScreen = () => {
   const [state, setState] = useState({
@@ -9,6 +10,10 @@ export const SwitchScreen = () => {
     isHungry: false,
     isHappy: true,
   });
+
+  const {
+    theme: {colors},
+  } = useContext(ThemeContext);
 
   const {isActive, isHappy, isHungry} = state;
 
@@ -24,7 +29,13 @@ export const SwitchScreen = () => {
       <HeaderTitle title="Switches" />
 
       <View style={styles.switchRow}>
-        <Text style={styles.switchText}>Is Active</Text>
+        <Text
+          style={{
+            ...styles.switchText,
+            color: colors.text,
+          }}>
+          Is Active
+        </Text>
         <CustomSwitch
           isOn={isActive}
           onChange={value => onChange(value, 'isActive')}
@@ -32,7 +43,13 @@ export const SwitchScreen = () => {
       </View>
 
       <View style={styles.switchRow}>
-        <Text style={styles.switchText}>Is Hungry</Text>
+        <Text
+          style={{
+            ...styles.switchText,
+            color: colors.text,
+          }}>
+          Is Hungry
+        </Text>
         <CustomSwitch
           isOn={isHungry}
           onChange={value => onChange(value, 'isHungry')}
@@ -40,14 +57,22 @@ export const SwitchScreen = () => {
       </View>
 
       <View style={styles.switchRow}>
-        <Text style={styles.switchText}>Is Happy</Text>
+        <Text
+          style={{
+            ...styles.switchText,
+            color: colors.text,
+          }}>
+          Is Happy
+        </Text>
         <CustomSwitch
           isOn={isHappy}
           onChange={value => onChange(value, 'isHappy')}
         />
       </View>
 
-      <Text style={styles.switchText}>{JSON.stringify(state, null, 5)}</Text>
+      <Text style={{...styles.switchText, color: colors.text}}>
+        {JSON.stringify(state, null, 5)}
+      </Text>
     </View>
   );
 };
